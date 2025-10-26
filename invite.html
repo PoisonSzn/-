@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Свадебное приглашение Z & G</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Great Vibes', cursive;
+    background: linear-gradient(to bottom, #ffe6ea, #ffdce0);
+    color: #5c3a3a;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    padding: 20px;
+}
+.bow {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px auto;
+    animation: sparkleBow 2s infinite alternate;
+}
+@keyframes sparkleBow {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+h1 {
+    font-size: 2.5em;
+    color: #d46a82;
+    margin-bottom: 10px;
+    animation: fadeIn 2s ease forwards;
+}
+.names {
+    font-size: 2em;
+    color: #b84c6c;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 1s;
+}
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin: 8px 0;
+    animation: fadeIn 2s ease forwards;
+}
+.date, .place, .signature {
+    font-weight: bold;
+    margin-top: 20px;
+    animation: fadeIn 2s ease forwards;
+}
+.date { animation-delay: 1.5s; }
+.place { animation-delay: 2s; }
+.signature { animation-delay: 2.5s; font-size: 1.3em; color: #a63d5a; }
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Падающие лепестки */
+.leaf {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle at 50% 50%, #ffc0cb 0%, #ffb6c1 100%);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    0% {transform: translateY(-50px) rotate(0deg); opacity:0;}
+    10% {opacity:0.8;}
+    100% {transform: translateY(110vh) rotate(360deg); opacity:0;}
+}
+
+/* Блёстки */
+.glitter {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: sparkle linear infinite;
+}
+@keyframes sparkle {
+    0%, 100% {opacity: 0.1;}
+    50% {opacity: 0.8;}
+}
+
+/* Бантик-блёстки */
+.bowGlitter {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: sparkleBowGlitter linear infinite;
+}
+@keyframes sparkleBowGlitter {
+    0%, 100% {opacity: 0.1;}
+    50% {opacity: 1;}
+}
+
+/* Кнопка музыки */
+#playMusic {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #d46a82;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+#playMusic:hover {
+    background-color: #b84c6c;
+}
+</style>
+</head>
+<body>
+
+<!-- Кнопка включения музыки -->
+<button id="playMusic">🎵 Включить музыку</button>
+
+<div class="container">
+    <!-- Бантик SVG -->
+    <svg class="bow" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 4C26 4 18 12 18 18s8 14 14 14 14-6 14-12-6-14-14-14z" fill="#d46a82"/>
+        <path d="M32 4c6 0 14 8 14 14s-8 14-14 14-14-8-14-14 8-14 14-14z" fill="#b84c6c" opacity="0.7"/>
+    </svg>
+
+    <h1 id="guestName">Дорогие друзья!</h1>
+    <div class="names">Приглашаем на свадьбу <br> Z & G</div>
+    <p>Мы начинаем новый этап в жизни<br>
+    и хотим разделить этот важный день с вами.</p>
+    <p>С огромной радостью приглашаем вас<br>
+    на нашу свадьбу!<br>
+    Будем очень рады видеть вас среди гостей.</p>
+    <p class="date">Суббота, 1 ноября 2025 года</p>
+    <p class="place">Адрес: Жийделик, Наби Кожо №23</p>
+    <p class="signature">С любовью, Z & G</p>
+</div>
+
+<script>
+// Падающие лепестки
+const leafCount = 30;
+for(let i=0;i<leafCount;i++){
+    const leaf = document.createElement('div');
+    leaf.classList.add('leaf');
+    leaf.style.left = Math.random()*100+'vw';
+    leaf.style.animationDuration = 5+Math.random()*5+'s';
+    leaf.style.animationDelay = Math.random()*5+'s';
+    document.body.appendChild(leaf);
+}
+
+// Блёстки
+const glitterCount = 40;
+for(let i=0;i<glitterCount;i++){
+    const g = document.createElement('div');
+    g.classList.add('glitter');
+    g.style.left = Math.random()*100+'vw';
+    g.style.top = Math.random()*100+'vh';
+    g.style.animationDuration = 2+Math.random()*3+'s';
+    document.body.appendChild(g);
+}
+
+// Бантик-блёстки вокруг бантика
+const bow = document.querySelector('.bow');
+const bowRect = bow.getBoundingClientRect();
+const bowCount = 8;
+for(let i=0;i<bowCount;i++){
+    const b = document.createElement('div');
+    b.classList.add('bowGlitter');
+    b.style.left = (bowRect.left + Math.random()*bowRect.width) + 'px';
+    b.style.top = (bowRect.top + Math.random()*bowRect.height) + 'px';
+    b.style.animationDuration = 1 + Math.random()*2 + 's';
+    document.body.appendChild(b);
+}
+
+// Подстановка имени
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name");
+if(name){
+    document.getElementById("guestName").textContent = "Дорогая " + name + "!";
+}
+
+// Кнопка включения музыки
+const audio = document.createElement('audio');
+audio.id = "bgMusic";
+audio.loop = true;
+audio.src = "https://cdn.pixabay.com/download/audio/2023/03/03/audio_5d00e0eeb7.mp3?filename=moonlight-sonata-piano-11871.mp3";
+document.body.appendChild(audio);
+
+document.getElementById('playMusic').addEventListener('click', () => {
+    audio.play();
+    document.getElementById('playMusic').style.display = 'none';
+});
+</script>
+
+</body>
+</html>
